@@ -1,0 +1,91 @@
+Problem we are solving: Creating a program called Personnel that maintains wage information for the employees of a particular company.
+
+
+I will first create three different classes Employee, HourlyEmployee, and SalariedEmployee. All these classes will implement Serializable.
+Employee will be superclasses. HourlyEmployee and SalariedEmployee will be subclasses. All these classes will need to import
+java util.io.*;
+
+The class Employee will be a public abstract class. I will create two private variables, String name and double wage. After, I will 
+create a protected constructor that the other classes that extend Employee can use. In addition, I will create two setter methods 
+called setName and setWage which will not be value returning. I will also create two getter methods named getName and getWage that will 
+return the value corresponding to the instance variables, so the other classes that inherit from Employee can use the information stored inthese variables. Also, I will create an abstract method called computePay that subclasses must override which will return a double value 
+and have a parameter for the numberofHours an employee has worked. The method will have no body because it is an abstract method. I will 
+need to create a method that also increases the weekly pay of an employee by a certain percentage, and this method will return a double 
+with a parameter for the percentage. I am going to insert the Utlities method pad in order to ensure that the length of the string is 
+exactly 40 characters, where there is the same amount of spacing between each the name and the wages. I will also have a toDollars() 
+method that I got from Utilities. The toDollars() method  converts a double value to the standard money format. The toDollars() method 
+will return a String.
+
+
+The class HourlyEmployee will be a public class that extends Employee. The HourlyEmployee class will have it's own constructor with the 
+name of the class and the same parameters as the Employee constructor. The constuctor will call the super constructor for intialization.
+I will also override the abstract method computePay in this class. The computePay method will have an if/else statement depending if 
+the employee has worked for more than 40 hours or less than 40 hours. The HourlyEmployee class will also have a toString() method that
+overrides the default toString() method from the Object superclass. This toString() method will print the name and wage of the employee 
+with it being exactly 40 characters long using the pad method from the Employee class.
+
+
+The class SalariedEmployee will be a public class that extends Employee. The SalariedEmployee class will have it's own constructor with
+the same parameters as the Employee constructor. The constructor will call the super constructor with the wage divided by 40 times 52.
+I will create a getAnnualSalary method which will be a getter method that returns the annual salary of an Employee. I will create a 
+setSalary method in this class which will allow to send a double parameter of the person's new salary and change the salary of the
+employee. Also, I will override the computePay method from the Employee class by doing 40 times the annual wage of the employee. The 
+toString() method will be similar to the toString() method of the HourlyEmployee besides it saying per year instead per hour.
+
+
+Then, I will create a file named Personnel which will be the client file. I will only have one method in the main method called printMenu. I will also have an arraylist of Employee objects in my main method of my client file.
+
+*All methods in the Personnel class will have the ArrayList of Employee objects as a parameter*
+
+I will create a method called printMenu. I will create a variable that stores the choice that the user inputs and a Scanner named input 
+which allows to take information from the user. I will use a do while loop to print the menu out using print statements. I will also take
+the input from the user after printing "Enter command:". After, I will create a switch statement for the different cases and a default case
+just in case the user inputs something that is not one of the options. Each case will have it's own method called and a break statement
+besides the default case. The while statement will be while choice does not equal q or Q. Once the user hits q or Q, the program will be 
+exited.I will add statements later that will allow for uppercase and lowercase to be typed and run the particular option that the user 
+inputs.
+
+
+I will create a method for each case in the switch statement in the printMenu method.
+
+For the casen method, I will create a method that has the variables of String name, String type, String wage, and double wage1 with a valueinitialized as -0.000001. I will also create a Scanner called inputn to receive data from the user. I will then use two print statements 
+and receive input from the user regarding the name and type of the employee. I will create a while loop that error catches if the user 
+inputs anything for the type of employee that is not h or s. The user will be prompted to input h or s until the user does input h or s. 
+Both uppercase and lowercase will be accepted. Once the user inputs, h or s, I will create two seperate if statements. If the input is h, 
+then it will prompt to enter the hourly wage of the employee. It will keep prompting the user to put in a valid hourly wage until the 
+person does so. After, it will create an HourlyEmployee object and add it to the arraylist of Employee objects. If the input is s, then it will prompt to enter the annual salary of the employee. It will keep prompting the user to put in a valid annual salary until the person 
+does so. After, it will create a SalariedEmployee object and add it to the arraylist of Employee objects.
+
+
+For the case c method, I will create the variables String hours and a double value intitalized as -0.000001  called hours1 to store the 
+number of hours the employee has worked. I will also create a Scanner called inputc. I will create a for loop that iterates through
+the ArrayList and it will prompt the user to enter the number of hours that the employee has worked until the user enters valid input.
+Once, the user enters valid input, it will compute the pay for the user and print it out. I will call another computePay1 method that I
+create in the Personnel class to ensure that the method prints out the pay in the proper format. Then, String hours will be set back to 
+null and hours1 will be set back to -0.000001 after the pay is computed for the current employee.
+
+*ONLY CLASS THAT WILL HAVE EXTRA PARAMETERS BESIDES THE ARRAYLIST OF EMPLOYEE OBJECTS*
+The computePay1 method that is called in case c will return a double and have the parameters of the ArrayList of employee objects, an 
+integer that represents the index, and the amount of hours the employee worked. The method will have one variable that is a double value
+called pay. Then, pay will be initialzied as getting the particular employee at a specific index from the ArrayList and computing its pay.
+Then, the method will return pay back to casec.
+
+
+For the caser method, I will create the variables String percentage and double percentage1 and intitialize percentage to -0.000001. 
+I will also create a Scanner named inputr. It will prompt the user to enter a percentage increase until the user provides valid input. 
+After the user has entered valid input, there will be a for loop that iterates through the ArrayList and raises everyone's wages and printsthe new wages by calling the toString method.
+
+
+For the casep method, the format will be similar to the caser method. It will print "Employees and their Wages" and then use a for loop
+to iterate through the ArrayList and print all the Employee objects.
+
+For the cased method, I will create a String called filename and initialize it to Employees.dat. I will then create an Arraylist of 
+Employee objects called a. Then, I will create a try/catch statement. The try portion will include writing the objects and creating
+a file that stores the objects. The catch part will catch the IOException error if there is any. I will use the Reading and 
+Writing objects sheet that Dr.Digh provided us to assist me.
+
+For the caseu method, I will create a String called filename and initialize it to Employees.dat. I will then create an Arraylist of 
+Employee objects called a and set it equal to null. Then, I will create a try/catch statement. The try portion will include reading the 
+objects and adding them to the ArrayList called a. There will be an IEOxception catch and a ClassNotFound Exception. If either error
+occurs, then an error message will displayed. Then, I will use a for loop to iterate through the ArrayList a and add the objects
+to the end of the ArrayList called employees. I will use the Reading and Writing objects sheet that Dr.Digh provided us to assist me.
